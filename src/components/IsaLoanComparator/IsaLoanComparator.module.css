@@ -1,0 +1,17 @@
+.comparison {
+    display: flex;        
+}
+
+.isa {
+    flex: 1;
+    background: #00308B;
+    color: #F2F2F2;
+    padding: 15px;
+}
+
+.loan {
+    flex: 1;
+    background: #F2F2F2;
+    color: #00308B;
+    padding: 15px;
+}

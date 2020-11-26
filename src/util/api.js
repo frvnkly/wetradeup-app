@@ -12,3 +12,16 @@ export const getProgramTerms = async () => {
     return {};
   }
 };
+
+export const calculateLoanMonthlyPayments = async ({ principal, interest, months }) => {
+  try {
+    const { data: { payment } } = await axios.post(
+      `${API}/calculator`,
+      { principal, interest, months },
+    );
+    return payment;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
