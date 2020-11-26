@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import styles from './IsaLoanComparator.module.css';
 import { getProgramTerms, calculateLoanMonthlyPayments } from '../../util/api';
+import calculateIsaMonthlyPayments from '../../util/calculateIsaMonthlyPayments';
 
 const IsaLoanComparator = () => {
   const [programTerms, setProgramTerms] = useState({});
@@ -24,7 +25,6 @@ const IsaLoanComparator = () => {
         const months = programTerms[selectedProgram].isa_length;
 
         const monthlyPayment = await calculateLoanMonthlyPayments({ principal, interest, months });
-        console.log(monthlyPayment);
         setProgramTerms(prevState => ({
           ...prevState,
           [selectedProgram]: {
@@ -39,6 +39,18 @@ const IsaLoanComparator = () => {
   const handleSelectProgram = event => {
     setSelectedProgram(event.target.value);
   };
+
+  const activeProgram = programTerms[selectedProgram];
+  let isaMonthlyPayments = [0];
+  if (activeProgram) {
+    const tuition = Number.parseFloat(activeProgram.tuition);
+    const salary = Number.parseFloat(activeProgram.typical_salary);
+    const take = Number.parseFloat(activeProgram.isa_take);
+    const cap = Number.parseFloat(activeProgram.isa_cap);
+    const threshold = Number.parseFloat(activeProgram.isa_threshold);
+    const months = Number.parseFloat(activeProgram.isa_length);
+    isaMonthlyPayments = calculateIsaMonthlyPayments({ tuition, salary, take, cap, threshold, months });
+  }  
 
   return (
     <div>
@@ -64,6 +76,7 @@ const IsaLoanComparator = () => {
               <h3>ISA</h3>
               <p>Take: {(Number.parseFloat(programTerms[selectedProgram].isa_take) * 100).toFixed(2)}%</p>
               <p>Threshold: ${programTerms[selectedProgram].isa_threshold}</p>
+              <p>{`$${isaMonthlyPayments[0].toFixed(2)}`}</p>
             </div>
 
             <div className={styles.loan}>
