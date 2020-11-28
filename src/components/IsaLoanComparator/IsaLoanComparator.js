@@ -7,6 +7,7 @@ import calculateIsaMonthlyPayments from '../../util/calculateIsaMonthlyPayments'
 const IsaLoanComparator = () => {
   const [programTerms, setProgramTerms] = useState({});
   const [selectedProgram, setSelectedProgram] = useState('');
+  const [salary, setSalary] = useState(0);
 
   // fetch program terms on component mount
   useEffect(() => {
@@ -37,14 +38,20 @@ const IsaLoanComparator = () => {
   }, [selectedProgram]);
 
   const handleSelectProgram = event => {
-    setSelectedProgram(event.target.value);
+    const selected = event.target.value;
+    setSelectedProgram(selected);
+    setSalary(Number.parseFloat(programTerms[selected].typical_salary));
   };
 
+  const handleChangeSalary = event => {
+    setSalary(event.target.value);
+  };
+
+  
   const activeProgram = programTerms[selectedProgram];
   let isaMonthlyPayments = [0];
   if (activeProgram) {
     const tuition = Number.parseFloat(activeProgram.tuition);
-    const salary = Number.parseFloat(activeProgram.typical_salary);
     const take = Number.parseFloat(activeProgram.isa_take);
     const cap = Number.parseFloat(activeProgram.isa_cap);
     const threshold = Number.parseFloat(activeProgram.isa_threshold);
@@ -69,6 +76,9 @@ const IsaLoanComparator = () => {
             <p>Tuition: ${programTerms[selectedProgram].tuition}</p>
             <p>Typical Salary: ${programTerms[selectedProgram].typical_salary}</p>
             <p>Term Length: {programTerms[selectedProgram].isa_length}</p>
+
+            <label>Salary</label>
+            <input type='text' value={salary} onChange={handleChangeSalary} />
           </div>
 
           <div className={styles.comparison}>
@@ -76,7 +86,7 @@ const IsaLoanComparator = () => {
               <h3>ISA</h3>
               <p>Take: {(Number.parseFloat(programTerms[selectedProgram].isa_take) * 100).toFixed(2)}%</p>
               <p>Threshold: ${programTerms[selectedProgram].isa_threshold}</p>
-              <p>{`$${isaMonthlyPayments[0].toFixed(2)}`}</p>
+              <p>{`$${isaMonthlyPayments[0]}`}</p>
             </div>
 
             <div className={styles.loan}>
