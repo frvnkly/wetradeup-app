@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import styles from './IsaLoanComparator.module.css';
+import Comparison from './Comparison';
 import MonthlyComparison from './MonthlyComparison';
 import { getProgramTerms, calculateLoanMonthlyPayments } from '../../util/api';
 import calculateIsaMonthlyPayments from '../../util/calculateIsaMonthlyPayments';
@@ -62,9 +63,7 @@ const IsaLoanComparator = () => {
 
   return (
     <div>
-      <div className={styles.programSelector}>
-        
-
+      <div className={styles.programSelector}>        
         <h2>Select a program below</h2>
 
         <select onChange={handleSelectProgram}>
@@ -89,25 +88,7 @@ const IsaLoanComparator = () => {
 
       {selectedProgram !== '' && (
         <>          
-          <div className={styles.comparison}>
-            <div className={styles.isa}>
-              <h3>ISA</h3>
-              <p>Take: {(Number.parseFloat(programTerms[selectedProgram].isa_take) * 100).toFixed(2)}%</p>
-              <p>Threshold: ${programTerms[selectedProgram].isa_threshold}</p>
-              <p>{`$${isaMonthlyPayments[0]}`}</p>
-            </div>
-
-            <div className={styles.loan}>
-              <h3>Loan</h3>
-              <p>Interest: {(Number.parseFloat(programTerms[selectedProgram].loan_interest) * 100).toFixed(2)}%</p>
-              <p>
-                {programTerms[selectedProgram].loan_monthly_payment
-                  ? `$${programTerms[selectedProgram].loan_monthly_payment}`
-                  : '...'}
-              </p>
-            </div>            
-          </div>
-
+          <Comparison program={activeProgram} isaMonthlyPayments={isaMonthlyPayments} />
           <MonthlyComparison isaMonthlyPayments={isaMonthlyPayments} loanMonthlyPayment={activeProgram.loan_monthly_payment} />
         </>
       )}

@@ -1,0 +1,59 @@
+.comparison {
+    display: flex;
+}
+
+.isa {
+    flex: 1;
+    display: flex;
+    flex-direction: column;    
+    justify-content: space-between;
+    background: #00308B;
+    color: #FFFFFF;
+    padding: 24px;
+    margin: 0 12px 24px 0;
+}
+
+.loan {
+    flex: 1;
+    display: flex;
+    flex-direction: column;    
+    justify-content: space-between;
+    background: #00003F;
+    color: #FFFFFF;
+    padding: 24px;
+    margin: 0 0 24px 12px;
+}
+
+.title {
+    margin-top: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 0 auto 25px;
+}
+
+.infoLine {
+    margin-bottom: 5px;
+}
+
+.infoLabel {
+    display: inline;
+    font-weight: 500;
+}
+
+.infoValue {
+    display: inline;
+}
+
+.subtitle {
+    margin-bottom: 5px;
+}
+
+.emphasis {
+    text-align: center;
+    font-size: 36px;
+    margin: 0;
+}

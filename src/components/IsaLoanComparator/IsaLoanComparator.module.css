@@ -3,23 +3,3 @@
     padding: 24px;
     margin-bottom: 24px;
 }
-
-.comparison {
-    display: flex;        
-}
-
-.isa {
-    flex: 1;
-    background: #00308B;
-    color: #FFFFFF;
-    padding: 15px;
-    margin: 0 12px 24px 0;
-}
-
-.loan {
-    flex: 1;
-    background: #00003F;
-    color: #FFFFFF;
-    padding: 15px;
-    margin: 0 0 24px 12px;
-}
