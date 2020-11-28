@@ -97,7 +97,23 @@ const IsaLoanComparator = () => {
                   ? `$${programTerms[selectedProgram].loan_monthly_payment}`
                   : '...'}
               </p>
+            </div>            
+          </div>
+
+          <div className={styles.monthlyComparison}>
+            <div className={styles.monthlyComparisonTile}>
+              <p className={styles.monthlyComparisonMonth}>month</p>
+              <p className={styles.monthlyComparisonIsa}>isa</p>
+              <p className={styles.monthlyComparisonLoan}>loan</p>
             </div>
+
+            {isaMonthlyPayments.map((x, i) => (
+              <div className={styles.monthlyComparisonTile}>
+                <p className={styles.monthlyComparisonMonth}>{i + 1}</p>
+                <p className={styles.monthlyComparisonIsa}>{`$${x}`}</p>
+                <p className={styles.monthlyComparisonLoan}>{activeProgram.loan_monthly_payment ? `$${activeProgram.loan_monthly_payment}` : '...'}</p>
+              </div>
+            ))}
           </div>
         </>
       )}

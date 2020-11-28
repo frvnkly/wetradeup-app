@@ -15,3 +15,29 @@
     color: #00308B;
     padding: 15px;
 }
+
+.monthlyComparison {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    background: #00D47B;
+    padding: 15px;
+}
+
+.monthlyComparisonTile {
+    width: 100px;
+}
+
+.monthlyComparisonMonth {
+    color: #ffffff;
+}
+
+.monthlyComparisonIsa {
+    color: #00308B;
+}
+
+.monthlyComparisonLoan {
+    color: #F2F2F2;
+}
