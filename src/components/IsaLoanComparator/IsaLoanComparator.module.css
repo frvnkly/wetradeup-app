@@ -1,3 +1,9 @@
+.programSelector {
+    background: #FFFFFF;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
 .comparison {
     display: flex;        
 }
@@ -5,39 +11,15 @@
 .isa {
     flex: 1;
     background: #00308B;
-    color: #F2F2F2;
+    color: #FFFFFF;
     padding: 15px;
+    margin: 0 12px 24px 0;
 }
 
 .loan {
     flex: 1;
-    background: #F2F2F2;
-    color: #00308B;
+    background: #00003F;
+    color: #FFFFFF;
     padding: 15px;
-}
-
-.monthlyComparison {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    box-sizing: border-box;
-    background: #00D47B;
-    padding: 15px;
-}
-
-.monthlyComparisonTile {
-    width: 100px;
-}
-
-.monthlyComparisonMonth {
-    color: #ffffff;
-}
-
-.monthlyComparisonIsa {
-    color: #00308B;
-}
-
-.monthlyComparisonLoan {
-    color: #F2F2F2;
+    margin: 0 0 24px 12px;
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import styles from './IsaLoanComparator.module.css';
+import MonthlyComparison from './MonthlyComparison';
 import { getProgramTerms, calculateLoanMonthlyPayments } from '../../util/api';
 import calculateIsaMonthlyPayments from '../../util/calculateIsaMonthlyPayments';
 
@@ -61,26 +62,33 @@ const IsaLoanComparator = () => {
 
   return (
     <div>
-      <h2>Select a program below</h2>
-      <select onChange={handleSelectProgram}>
-        <option value=''>-</option>
+      <div className={styles.programSelector}>
+        
 
-        {Object.keys(programTerms).map(programName => (
-          <option value={programName}>{programName}</option>
-        ))}
-      </select>
+        <h2>Select a program below</h2>
 
-      {selectedProgram !== '' && (
-        <>
+        <select onChange={handleSelectProgram}>
+          <option value=''>-</option>
+
+          {Object.keys(programTerms).map(programName => (
+            <option value={programName}>{programName}</option>
+          ))}
+        </select>
+
+        {selectedProgram !== '' && (
           <div>
             <p>Tuition: ${programTerms[selectedProgram].tuition}</p>
             <p>Typical Salary: ${programTerms[selectedProgram].typical_salary}</p>
             <p>Term Length: {programTerms[selectedProgram].isa_length}</p>
 
-            <label>Salary</label>
+            <label>$</label>
             <input type='text' value={salary} onChange={handleChangeSalary} />
           </div>
+        )}
+      </div>
 
+      {selectedProgram !== '' && (
+        <>          
           <div className={styles.comparison}>
             <div className={styles.isa}>
               <h3>ISA</h3>
@@ -100,21 +108,7 @@ const IsaLoanComparator = () => {
             </div>            
           </div>
 
-          <div className={styles.monthlyComparison}>
-            <div className={styles.monthlyComparisonTile}>
-              <p className={styles.monthlyComparisonMonth}>month</p>
-              <p className={styles.monthlyComparisonIsa}>isa</p>
-              <p className={styles.monthlyComparisonLoan}>loan</p>
-            </div>
-
-            {isaMonthlyPayments.map((x, i) => (
-              <div className={styles.monthlyComparisonTile}>
-                <p className={styles.monthlyComparisonMonth}>{i + 1}</p>
-                <p className={styles.monthlyComparisonIsa}>{`$${x}`}</p>
-                <p className={styles.monthlyComparisonLoan}>{activeProgram.loan_monthly_payment ? `$${activeProgram.loan_monthly_payment}` : '...'}</p>
-              </div>
-            ))}
-          </div>
+          <MonthlyComparison isaMonthlyPayments={isaMonthlyPayments} loanMonthlyPayment={activeProgram.loan_monthly_payment} />
         </>
       )}
     </div>

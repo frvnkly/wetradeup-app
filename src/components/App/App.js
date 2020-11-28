@@ -4,9 +4,11 @@ import IsaLoanComparator from '../IsaLoanComparator';
 
 const App = () => {
   return (
-    <div className={styles.App}>
-      <Header />
-      <IsaLoanComparator />
+    <div>
+      <div className={styles.container}>
+        <Header />
+        <IsaLoanComparator />
+      </div>
     </div>
   );
 }

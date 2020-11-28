@@ -1,0 +1,46 @@
+.monthlyComparison {
+    width: 100%;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    padding: 24px;
+}
+
+.title {
+    color: #00D47B;
+}
+
+.container {
+    display: flex;
+}
+
+.legend {
+    font-weight: 700;
+    padding-left: 36px;
+    padding-right: 36px;    
+}
+
+.months {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 100px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.month {
+    color: #00D47B;
+    font-weight: 700;
+}
+
+.isa {
+    color: #00308B;
+    margin: 10px;
+}
+
+.loan {
+    color: #00003F;
+    margin: 10px;
+}

@@ -1,5 +1,5 @@
-.App {
+.container {
     max-width: 992px;
     text-align: center;
-    margin: auto;
+    margin: 45px auto;
 }
