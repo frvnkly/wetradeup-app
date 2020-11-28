@@ -3,13 +3,15 @@ import { useState, useEffect } from 'react';
 import styles from './IsaLoanComparator.module.css';
 import Comparison from './Comparison';
 import MonthlyComparison from './MonthlyComparison';
+import Brand from '../Brand';
 import { getProgramTerms, calculateLoanMonthlyPayments } from '../../util/api';
 import calculateIsaMonthlyPayments from '../../util/calculateIsaMonthlyPayments';
 
 const IsaLoanComparator = () => {
   const [programTerms, setProgramTerms] = useState({});
   const [selectedProgram, setSelectedProgram] = useState('');
-  const [salary, setSalary] = useState(0);
+  const [isEmployed, setIsEmployed] = useState(true);
+  const [projectedSalary, setProjectedSalary] = useState(0);
 
   // fetch program terms on component mount
   useEffect(() => {
@@ -42,11 +44,11 @@ const IsaLoanComparator = () => {
   const handleSelectProgram = event => {
     const selected = event.target.value;
     setSelectedProgram(selected);
-    setSalary(Number.parseFloat(programTerms[selected].typical_salary));
+    if (programTerms[selected]) setProjectedSalary(Number.parseFloat(programTerms[selected].typical_salary));
   };
 
   const handleChangeSalary = event => {
-    setSalary(event.target.value);
+    setProjectedSalary(event.target.value);
   };
 
   
@@ -54,6 +56,7 @@ const IsaLoanComparator = () => {
   let isaMonthlyPayments = [0];
   if (activeProgram) {
     const tuition = Number.parseFloat(activeProgram.tuition);
+    const salary = isEmployed ? projectedSalary : 0;
     const take = Number.parseFloat(activeProgram.isa_take);
     const cap = Number.parseFloat(activeProgram.isa_cap);
     const threshold = Number.parseFloat(activeProgram.isa_threshold);
@@ -63,12 +66,14 @@ const IsaLoanComparator = () => {
 
   return (
     <div>
-      <div className={styles.programSelector}>        
-        <h2>Select a program below</h2>
+      <div className={styles.controls}>
+        <Brand />
 
-        <select onChange={handleSelectProgram}>
+        <h2>ISA and Loan Calculator</h2>
+
+        <h3 className={styles.label}>Select a program</h3>
+        <select className={styles.programSelect} onChange={handleSelectProgram}>
           <option value=''>-</option>
-
           {Object.keys(programTerms).map(programName => (
             <option value={programName}>{programName}</option>
           ))}
@@ -76,12 +81,32 @@ const IsaLoanComparator = () => {
 
         {selectedProgram !== '' && (
           <div>
-            <p>Tuition: ${programTerms[selectedProgram].tuition}</p>
-            <p>Typical Salary: ${programTerms[selectedProgram].typical_salary}</p>
-            <p>Term Length: {programTerms[selectedProgram].isa_length}</p>
+            <div className={styles.info}>
+              <div className={styles.infoLine}>
+                <p className={styles.infoLabel}>Tuition </p>
+                <p className={styles.infoValue}>${programTerms[selectedProgram].tuition}</p>
+              </div>
+              <div className={styles.infoLine}>
+                <p className={styles.infoLabel}>Term Length </p>
+                <p className={styles.infoValue}>{programTerms[selectedProgram].isa_length} months</p>
+              </div>
+            </div>
 
-            <label>$</label>
-            <input type='text' value={salary} onChange={handleChangeSalary} />
+            <div>
+              <input type='checkbox' checked={isEmployed} onClick={() => { setIsEmployed(!isEmployed) }} />
+              <label>Employed?</label>
+            </div>
+
+            {isEmployed && (
+              <div>
+                <h3 className={styles.label}>Projected Salary</h3>
+                <div className={styles.salaryInput}>
+                  <label>$</label>
+                  <input className={styles.salary} type='text' value={projectedSalary} onChange={handleChangeSalary} />
+                </div>
+                <p className={styles.salarySubtext}>Typical salary: ${programTerms[selectedProgram].typical_salary}</p>
+              </div>
+            )}            
           </div>
         )}
       </div>

@@ -1,5 +1,60 @@
-.programSelector {
+.controls {
     background: #FFFFFF;
     padding: 24px;
     margin-bottom: 24px;
+}
+
+.programSelect {
+    font-size: 18px;
+    padding: 5px;
+    border-color: lightgray;
+}
+
+.label {
+    margin: 15px 0 10px 0;
+}
+
+.info {
+    margin: 15px 0;
+}
+
+.infoLine {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.infoLabel {
+    /* display: inline; */
+    flex: 1;
+    text-align: right;
+    font-weight: 500;
+    margin: 0 5px 0 0;
+}
+
+.infoValue {
+    /* display: inline; */
+    flex: 1;
+    text-align: left;
+    margin: 0 0 0 5px;
+}
+
+.salaryInput {
+    border: 1px solid lightgray;
+    width: 120px;
+    font-size: 18px;
+    margin: auto;
+}
+
+.salaryInput input {
+    font-size: 18px;
+    text-align: right;
+    border: none;
+    width: 100px;
+}
+
+.salarySubtext {
+    font-size: 12px;
+    font-style: italic;
+    margin: 5px 0 0 0;
 }
