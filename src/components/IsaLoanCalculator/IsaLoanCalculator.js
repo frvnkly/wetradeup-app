@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
-import styles from './IsaLoanComparator.module.css';
+import styles from './IsaLoanCalculator.module.css';
 import Comparison from './Comparison';
 import MonthlyComparison from './MonthlyComparison';
 import Brand from '../Brand';
 import { getProgramTerms, calculateLoanMonthlyPayments } from '../../util/api';
 import calculateIsaMonthlyPayments from '../../util/calculateIsaMonthlyPayments';
 
-const IsaLoanComparator = () => {
+const IsaLoanCalculator = () => {
   const [programTerms, setProgramTerms] = useState({});
   const [selectedProgram, setSelectedProgram] = useState('');
   const [isEmployed, setIsEmployed] = useState(true);
@@ -44,6 +44,8 @@ const IsaLoanComparator = () => {
   const handleSelectProgram = event => {
     const selected = event.target.value;
     setSelectedProgram(selected);
+
+    // set projected salary to program's typical salary
     if (programTerms[selected]) setProjectedSalary(Number.parseFloat(programTerms[selected].typical_salary));
   };
 
@@ -121,4 +123,4 @@ const IsaLoanComparator = () => {
   );
 };
 
-export default IsaLoanComparator;
+export default IsaLoanCalculator;

@@ -1,11 +1,11 @@
 import styles from './App.module.css';
-import IsaLoanComparator from '../IsaLoanComparator';
+import IsaLoanCalculator from '../IsaLoanCalculator';
 
 const App = () => {
   return (
     <div>
       <div className={styles.container}>
-        <IsaLoanComparator />
+        <IsaLoanCalculator />
       </div>
     </div>
   );
