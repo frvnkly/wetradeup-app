@@ -36,7 +36,7 @@ const Comparison = ({ program, isaMonthlyPayments }) => {
         <div>
           <div>
             <p className={styles.subtitle}>Monthly Payment</p>
-            <span className={styles.emphasis}>{`$${isaMonthlyPayments[0]}`}</span>
+            <span className={styles.emphasis}>{`$${isaMonthlyPayments[0].toFixed(2)}`}</span>
             <span> for {isaMonths} months</span>        
           </div>
 

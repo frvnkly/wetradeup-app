@@ -7,7 +7,7 @@ const calculateIsaMonthlyPayments = ({ tuition, salary, take, cap, threshold, mo
   let amountToPay = Math.min(monthlyPayment * months, tuition * cap);
   let i = 0;
   while (i < payments.length && amountToPay > 0) {
-    const payment = Math.min(monthlyPayment, amountToPay).toFixed(2);
+    const payment = Math.min(monthlyPayment, amountToPay);
 
     payments[i] = payment;
     amountToPay -= payment;

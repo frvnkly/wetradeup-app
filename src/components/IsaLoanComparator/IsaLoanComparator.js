@@ -54,9 +54,9 @@ const IsaLoanComparator = () => {
   
   const activeProgram = programTerms[selectedProgram];
   let isaMonthlyPayments = [0];
+  const salary = isEmployed ? projectedSalary : 0;
   if (activeProgram) {
     const tuition = Number.parseFloat(activeProgram.tuition);
-    const salary = isEmployed ? projectedSalary : 0;
     const take = Number.parseFloat(activeProgram.isa_take);
     const cap = Number.parseFloat(activeProgram.isa_cap);
     const threshold = Number.parseFloat(activeProgram.isa_threshold);
@@ -114,7 +114,7 @@ const IsaLoanComparator = () => {
       {selectedProgram !== '' && (
         <>          
           <Comparison program={activeProgram} isaMonthlyPayments={isaMonthlyPayments} />
-          <MonthlyComparison isaMonthlyPayments={isaMonthlyPayments} loanMonthlyPayment={activeProgram.loan_monthly_payment} />
+          <MonthlyComparison salary={salary} isaMonthlyPayments={isaMonthlyPayments} loanMonthlyPayment={activeProgram.loan_monthly_payment} />
         </>
       )}
     </div>

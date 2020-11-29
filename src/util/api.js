@@ -19,9 +19,9 @@ export const calculateLoanMonthlyPayments = async ({ principal, interest, months
       `${API}/calculator`,
       { principal, interest, months },
     );
-    return payment;
+    return Number.parseFloat(payment);
   } catch (err) {
     console.log(err);
-    return false;
+    return null;
   }
 };
