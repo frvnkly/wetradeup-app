@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/wetradeup-app/static/css/main.8c6ddf9d.chunk.css",
+    "main.js": "/wetradeup-app/static/js/main.3a56cbb2.chunk.js",
+    "main.js.map": "/wetradeup-app/static/js/main.3a56cbb2.chunk.js.map",
+    "runtime-main.js": "/wetradeup-app/static/js/runtime-main.a5274070.js",
+    "runtime-main.js.map": "/wetradeup-app/static/js/runtime-main.a5274070.js.map",
+    "static/js/2.b22500a1.chunk.js": "/wetradeup-app/static/js/2.b22500a1.chunk.js",
+    "static/js/2.b22500a1.chunk.js.map": "/wetradeup-app/static/js/2.b22500a1.chunk.js.map",
+    "index.html": "/wetradeup-app/index.html",
+    "static/css/main.8c6ddf9d.chunk.css.map": "/wetradeup-app/static/css/main.8c6ddf9d.chunk.css.map",
+    "static/js/2.b22500a1.chunk.js.LICENSE.txt": "/wetradeup-app/static/js/2.b22500a1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a5274070.js",
+    "static/js/2.b22500a1.chunk.js",
+    "static/css/main.8c6ddf9d.chunk.css",
+    "static/js/main.3a56cbb2.chunk.js"
+  ]
+}
